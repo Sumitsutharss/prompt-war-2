@@ -19,6 +19,7 @@
   <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="sections.css" />
+  <link rel="stylesheet" href="phase4.css" />
 </head>
 <body id="app" class="lang-en">
 
@@ -308,33 +309,127 @@
       </div>
     </section>
 
-    <!-- SECTION 7: Parliament (Phase 4) -->
+    <!-- SECTION 7: Parliament -->
     <section id="parliament" class="section" aria-labelledby="parliament-heading">
       <div class="container">
-        <h2 id="parliament-heading" class="section-title">
-          <span class="hindi">संसद</span>
-          Parliament of India
-        </h2>
+        <div class="section-header reveal">
+          <div class="section-eyebrow">D3.js Seating Charts · Live Composition</div>
+          <h2 id="parliament-heading" class="section-title"><span class="hindi">संसद</span>Parliament of India</h2>
+        </div>
+        <div class="parliament-tabs reveal" role="tablist">
+          <button class="parl-tab active" data-pane="ls" role="tab">🏛️ Lok Sabha (543 seats)</button>
+          <button class="parl-tab" data-pane="rs" role="tab">⚖️ Rajya Sabha (245 seats)</button>
+        </div>
+        <div id="parl-pane-ls" class="parl-pane active">
+          <div class="parl-layout">
+            <div class="seating-wrap"><svg id="ls-chart" role="img" aria-label="Lok Sabha seating chart showing party-wise seat distribution"></svg></div>
+            <div class="parl-stats" id="ls-stats"></div>
+          </div>
+        </div>
+        <div id="parl-pane-rs" class="parl-pane">
+          <div class="parl-layout">
+            <div class="seating-wrap"><svg id="rs-chart" role="img" aria-label="Rajya Sabha seating chart"></svg></div>
+            <div class="parl-stats" id="rs-stats"></div>
+          </div>
+        </div>
+        <div class="parl-meta reveal">
+          <div class="parl-accordion" role="list">
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false">Lok Sabha — Key Facts <span class="acc-arrow">▾</span></button>
+              <div class="accordion-content"><div class="accordion-body">Lok Sabha (House of the People) is the lower house of Parliament. It has a maximum of 552 elected members — 530 from states, 20 from UTs, and 2 Anglo-Indian nominees (abolished in 2020). Current strength: 543. Speaker: Om Birla. Sessions: Budget (Feb–May), Monsoon (Jul–Aug), Winter (Nov–Dec). Quorum: 10% of total members. Bills: Money bills originate here only.</div></div>
+            </div>
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false">Rajya Sabha — Key Facts <span class="acc-arrow">▾</span></button>
+              <div class="accordion-content"><div class="accordion-body">Rajya Sabha (Council of States) is the upper house. Maximum 250 members: 238 elected by state legislative assemblies + 12 nominated by President for Arts, Science, Literature, Social Service. Rajya Sabha is a permanent body — never dissolved. 1/3rd members retire every 2 years. Chairman: VP Jagdeep Dhankhar. Rajya Sabha can reject or amend non-money bills.</div></div>
+            </div>
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false">Joint Sessions &amp; Special Powers <span class="acc-arrow">▾</span></button>
+              <div class="accordion-content"><div class="accordion-body">Joint Session (Article 108): called by President when Lok Sabha passes a bill that Rajya Sabha rejects. Chaired by Lok Sabha Speaker. Notable joint sessions: Dowry Prohibition Act 1961, Banking Service Commission (Repeal) Act 1977, Prevention of Terrorism Act 2002. Constitutional amendments require 2/3rd majority in both houses. No-confidence motion: only in Lok Sabha.</div></div>
+            </div>
+          </div>
+        </div>
       </div>
+      <div id="parl-tooltip" style="position:fixed;pointer-events:none;z-index:2001;background:var(--bg-card);border:1px solid var(--border-saffron);border-radius:var(--radius-md);padding:8px 14px;font-family:var(--font-ui);font-size:13px;font-weight:600;opacity:0;transition:opacity 0.15s;color:var(--text-primary)"></div>
     </section>
 
-    <!-- SECTION 8: States (Phase 4) -->
+    <!-- SECTION 8: States Dashboard -->
     <section id="states" class="section" aria-labelledby="states-heading">
       <div class="container">
-        <h2 id="states-heading" class="section-title">
-          <span class="hindi">राज्य और केंद्र शासित प्रदेश</span>
-          States &amp; Union Territories
-        </h2>
+        <div class="section-header reveal">
+          <div class="section-eyebrow">28 States + 8 Union Territories</div>
+          <h2 id="states-heading" class="section-title"><span class="hindi">राज्य और केंद्र शासित प्रदेश</span>States &amp; Union Territories</h2>
+        </div>
+        <div class="states-controls reveal">
+          <input type="search" id="states-search" class="states-search" placeholder="Search state..." aria-label="Search states" />
+          <div class="states-view-toggle">
+            <button id="view-cards" class="view-toggle-btn active">Cards</button>
+            <button id="view-table" class="view-toggle-btn">Table</button>
+          </div>
+          <div style="display:flex;gap:var(--space-sm);flex-wrap:wrap">
+            <button class="pill-btn active" data-region-filter="all">All Regions</button>
+            <button class="pill-btn" data-region-filter="North">North</button>
+            <button class="pill-btn" data-region-filter="South">South</button>
+            <button class="pill-btn" data-region-filter="East">East</button>
+            <button class="pill-btn" data-region-filter="West">West</button>
+            <button class="pill-btn" data-region-filter="Central">Central</button>
+            <button class="pill-btn" data-region-filter="Northeast">NE</button>
+          </div>
+          <button id="export-csv" class="btn btn-outline-green export-csv-btn">⬇ Export CSV</button>
+        </div>
+        <div class="states-grid" id="states-grid"></div>
+        <div id="states-table-wrap" class="states-table-wrap">
+          <table class="states-table" aria-label="States data table">
+            <thead><tr><th>State/UT</th><th>Chief Minister</th><th>Party</th><th>Alliance</th><th>LS Seats</th><th>Assembly</th><th>Next Election</th><th>Region</th></tr></thead>
+            <tbody id="states-table-body"></tbody>
+          </table>
+        </div>
       </div>
     </section>
 
-    <!-- SECTION 9: 2024 Results (Phase 4) -->
+    <!-- SECTION 9: 2024 Results -->
     <section id="results-2024" class="section" aria-labelledby="results-heading">
       <div class="container">
-        <h2 id="results-heading" class="section-title">
-          <span class="hindi">2024 लोक सभा चुनाव</span>
-          18th Lok Sabha — 2024 General Election
-        </h2>
+        <div class="section-header reveal">
+          <div class="section-eyebrow">7 Phases · 19 Apr – 1 Jun 2024 · Result: 4 Jun 2024</div>
+          <h2 id="results-heading" class="section-title"><span class="hindi">2024 लोक सभा चुनाव</span>18th Lok Sabha — 2024 General Election</h2>
+        </div>
+        <div class="results-facts reveal">
+          <div class="results-fact-pill">Total Seats: <span>543</span></div>
+          <div class="results-fact-pill">Voter Turnout: <span>65.79%</span></div>
+          <div class="results-fact-pill">Total Voters: <span>96.88 Cr</span></div>
+          <div class="results-fact-pill">Candidates: <span>8,360</span></div>
+          <div class="results-fact-pill">Phases: <span>7</span></div>
+          <div class="results-fact-pill">Women MPs: <span>74</span></div>
+        </div>
+        <div class="results-big-cards reveal-children">
+          <div class="results-big-card nda"><div class="results-big-label">NDA Alliance</div><div class="results-big-num">293</div><div class="results-big-sub">BJP 240 + Allies 53 · Majority ✓</div></div>
+          <div class="results-big-card india"><div class="results-big-label">INDIA Alliance</div><div class="results-big-num">234</div><div class="results-big-sub">INC 99 + Allies 135 · Opposition</div></div>
+          <div class="results-big-card other"><div class="results-big-label">Others / Independents</div><div class="results-big-num">16</div><div class="results-big-sub">BSP 0 · AIMIM 2 · IND 7</div></div>
+        </div>
+        <div class="reveal">
+          <div class="results-bar-label">Seat distribution (272 needed for majority)</div>
+          <div class="results-stacked" role="img" aria-label="Seat distribution bar: NDA 293, INDIA 234, Others 16">
+            <div class="results-stacked-nda" style="width:0%"></div>
+            <div class="results-stacked-india" style="width:0%"></div>
+            <div class="results-stacked-other" style="width:0%"></div>
+          </div>
+        </div>
+        <div class="results-chart-wrap reveal">
+          <h3>Top Parties by Seats Won</h3>
+          <canvas id="results-chart" aria-label="Bar chart of top parties by Lok Sabha seats won in 2024"></canvas>
+        </div>
+        <div class="reveal">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-lg)">
+            <h3 style="font-family:var(--font-editorial);font-size:1.3rem">Key Constituency Results</h3>
+            <button id="show-more-results" class="btn btn-outline-saffron">Show All 50 →</button>
+          </div>
+          <div class="const-table-wrap">
+            <table class="const-table" aria-label="2024 constituency results">
+              <thead><tr><th>Constituency</th><th>State</th><th>Winner</th><th>Party</th><th>Margin</th><th>Turnout</th></tr></thead>
+              <tbody id="const-table-body"></tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -458,5 +553,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
   <script src="script.js" defer></script>
   <script src="sections.js" defer></script>
+  <script src="phase4.js" defer></script>
 </body>
 </html>
