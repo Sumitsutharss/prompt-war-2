@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#04050A" />
+  <title>VoteIQ India — Bharat Gaurav | AI-Powered Election Education</title>
+  <meta name="description" content="India's most immersive AI-powered election education platform. Explore the interactive India map, parliament data, 2024 election results, and get AI-guided answers — in Hindi or English." />
+  <meta name="keywords" content="India election, Lok Sabha, Rajya Sabha, political parties, election process, AI guide, VoteIQ" />
+  <meta property="og:title" content="VoteIQ India — Bharat Gaurav" />
+  <meta property="og:description" content="Understand India's Democracy — Deeply, Visually, Intelligently" />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Tiro+Devanagari+Hindi&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body id="app" class="lang-en">
+
+  <!-- SVG Defs — Reusable Ashoka Chakra symbol -->
+  <svg style="display:none" aria-hidden="true">
+    <defs>
+      <symbol id="chakra-svg" viewBox="0 0 100 100">
+        <!-- Outer ring -->
+        <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="3"/>
+        <!-- Inner hub -->
+        <circle cx="50" cy="50" r="5" fill="currentColor"/>
+        <!-- 24 spokes at 15° intervals -->
+        <line x1="50" y1="50" x2="50.00" y2="4.00"  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="61.93" y2="5.10"  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="72.52" y2="8.24"  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="81.48" y2="13.94" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="88.36" y2="21.64" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="92.76" y2="30.97" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="96.00" y2="50.00" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="92.76" y2="69.03" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="88.36" y2="78.36" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="81.48" y2="86.06" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="72.52" y2="91.76" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="61.93" y2="94.90" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="50.00" y2="96.00" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="38.07" y2="94.90" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="27.48" y2="91.76" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="18.52" y2="86.06" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="11.64" y2="78.36" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="7.24"  y2="69.03" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="4.00"  y2="50.00" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="7.24"  y2="30.97" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="11.64" y2="21.64" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="18.52" y2="13.94" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="27.48" y2="8.24"  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="50" x2="38.07" y2="5.10"  stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- SECTION 0: Loading Screen -->
+  <div id="loading-screen" role="status" aria-label="Loading VoteIQ India" aria-live="polite">
+    <div class="loading-chakra-wrap">
+      <svg id="loading-chakra" viewBox="0 0 100 100" aria-hidden="true" style="color:var(--navy-chakra)">
+        <use href="#chakra-svg"/>
+      </svg>
+    </div>
+    <div class="loading-bar-wrap" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div class="loading-bar" id="loading-bar"></div>
+    </div>
+    <p class="loading-title" aria-hidden="true">VoteIQ India</p>
+    <p class="loading-subtitle" lang="hi">लोकतंत्र की आवाज़</p>
+  </div>
+
+  <!-- SECTION 1: Navbar -->
+  <header id="navbar" role="banner">
+    <nav class="navbar-inner container" aria-label="Main navigation">
+      <a href="#hero" class="navbar-logo" aria-label="VoteIQ India — go to homepage">
+        <svg class="navbar-chakra" viewBox="0 0 100 100" aria-hidden="true" width="28" height="28" style="color:var(--navy-chakra)">
+          <use href="#chakra-svg"/>
+        </svg>
+        <span class="navbar-brand">
+          <span class="brand-voteiq">VOTEIQ</span>
+          <span class="brand-india">INDIA</span>
+        </span>
+      </a>
+
+      <ul class="navbar-links" role="list" aria-label="Site sections">
+        <li><a href="#india-map"        class="nav-link" data-section="map">Map</a></li>
+        <li><a href="#leaders"          class="nav-link" data-section="leaders">Leaders</a></li>
+        <li><a href="#parties"          class="nav-link" data-section="parties">Parties</a></li>
+        <li><a href="#parliament"       class="nav-link" data-section="parliament">Parliament</a></li>
+        <li><a href="#election-process" class="nav-link" data-section="process">Process</a></li>
+        <li><a href="#quiz"             class="nav-link" data-section="quiz">Quiz</a></li>
+        <li><a href="#ai-guide"         class="nav-link" data-section="ai">AI Guide</a></li>
+      </ul>
+
+      <div class="navbar-actions">
+        <button id="search-btn" class="navbar-icon-btn" aria-label="Open search" aria-haspopup="dialog">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </button>
+        <button id="lang-toggle" class="navbar-lang-btn" aria-label="Toggle language" aria-pressed="false">
+          <span class="en-only">EN</span><span class="hi-only" lang="hi">हिं</span>
+        </button>
+        <button id="ask-ai-btn" class="btn btn-saffron navbar-ai-btn" aria-haspopup="dialog">Ask AI ✨</button>
+        <button id="hamburger" class="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation" hidden>
+      <ul class="mobile-links" role="list">
+        <li><a href="#india-map"        class="mobile-link">🗺️ Map</a></li>
+        <li><a href="#leaders"          class="mobile-link">👤 Leaders</a></li>
+        <li><a href="#parties"          class="mobile-link">🏛️ Parties</a></li>
+        <li><a href="#parliament"       class="mobile-link">⚖️ Parliament</a></li>
+        <li><a href="#election-process" class="mobile-link">📋 Process</a></li>
+        <li><a href="#quiz"             class="mobile-link">🧠 Quiz</a></li>
+        <li><a href="#ai-guide"         class="mobile-link">✨ AI Guide</a></li>
+      </ul>
+      <div class="mobile-actions">
+        <button id="lang-toggle-mobile" class="navbar-lang-btn">EN | हिं</button>
+        <button id="ask-ai-mobile" class="btn btn-saffron">Ask AI ✨</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+
+    <!-- SECTION 2: Hero -->
+    <section id="hero" class="hero-section" aria-labelledby="hero-heading">
+      <div class="hero-chakra-watermark" aria-hidden="true">
+        <svg viewBox="0 0 100 100" style="color:var(--navy-chakra)"><use href="#chakra-svg"/></svg>
+      </div>
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+
+      <div class="hero-content container">
+        <div class="hero-badge-wrap reveal">
+          <span class="badge badge-saffron" role="text">
+            <span class="pulse-indicator" aria-hidden="true"></span>
+            🗳️ BHARAT GAURAV EDITION — ELECTION DATA 2026
+          </span>
+        </div>
+
+        <h1 id="hero-heading" class="hero-headline" aria-label="VoteIQ India">
+          <span class="hero-letters" aria-hidden="true"></span>
+          <span class="sr-only">VoteIQ India</span>
+        </h1>
+
+        <p class="hero-sub-hindi reveal" lang="hi">भारत के लोकतंत्र को समझिए</p>
+        <p class="hero-sub-english reveal">
+          Understand India's Democracy — Deeply, Visually, Intelligently
+        </p>
+
+        <div class="hero-stats reveal-children" role="region" aria-label="Key election statistics">
+          <div class="hero-stat">
+            <span class="stat-number" data-target="96.88" data-suffix=" Cr" data-decimal="2" id="stat-voters" aria-label="96.88 Crore registered voters">0</span>
+            <span class="stat-label">Registered Voters</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number" data-target="543" data-suffix="" id="stat-seats" aria-label="543 Lok Sabha seats">0</span>
+            <span class="stat-label">Lok Sabha Seats</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number" data-target="4120" data-suffix="+" id="stat-assembly" aria-label="4120 plus Vidhan Sabha seats">0</span>
+            <span class="stat-label">Vidhan Sabha Seats</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number" data-target="1950" data-suffix="" id="stat-year" aria-label="Constitution adopted in 1950">0</span>
+            <span class="stat-label">Constitution Year</span>
+          </div>
+        </div>
+
+        <div class="hero-ctas reveal">
+          <a href="#india-map" class="btn btn-saffron" id="cta-map">Explore the Map →</a>
+          <button class="btn btn-outline-saffron" id="cta-ai" aria-haspopup="dialog">Ask AI Guide ✨</button>
+          <a href="#quiz" class="btn btn-outline-green" id="cta-quiz">Take Election Quiz 🧠</a>
+        </div>
+
+        <div class="hero-scroll-indicator reveal" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="hero-ticker" role="marquee" aria-label="Election facts ticker">
+        <div class="ticker-track" aria-hidden="true">
+          <span class="ticker-content">LOK SABHA 543 SEATS &bull; RAJYA SABHA 245 SEATS &bull; 28 STATES + 8 UTs &bull; 96.88 CR VOTERS &bull; PM: NARENDRA MODI &bull; CEC: GYANESH KUMAR &bull; NDA: 293 SEATS &bull; INDIA ALLIANCE: 234 SEATS &bull; BIHAR ELECTION: 2025 &bull; ARTICLE 324: ECI AUTHORITY &bull; VOTER HELPLINE: 1950 &bull; &nbsp;</span>
+          <span class="ticker-content" aria-hidden="true">LOK SABHA 543 SEATS &bull; RAJYA SABHA 245 SEATS &bull; 28 STATES + 8 UTs &bull; 96.88 CR VOTERS &bull; PM: NARENDRA MODI &bull; CEC: GYANESH KUMAR &bull; NDA: 293 SEATS &bull; INDIA ALLIANCE: 234 SEATS &bull; BIHAR ELECTION: 2025 &bull; ARTICLE 324: ECI AUTHORITY &bull; VOTER HELPLINE: 1950 &bull; &nbsp;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: India Map (Phase 3) -->
+    <section id="india-map" class="section" aria-labelledby="map-heading">
+      <div class="container">
+        <h2 id="map-heading" class="section-title">
+          <span class="hindi">भारत का चुनावी नक्शा</span>
+          India's Electoral Map
+        </h2>
+        <p class="section-subtitle">Interactive map — coming in Phase 3</p>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Current Government (Phase 3) -->
+    <section id="government" class="section" aria-labelledby="govt-heading">
+      <div class="container">
+        <h2 id="govt-heading" class="section-title">
+          <span class="hindi">वर्तमान सरकार</span>
+          Current Government — Modi 3.0
+        </h2>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Leaders (Phase 3) -->
+    <section id="leaders" class="section" aria-labelledby="leaders-heading">
+      <div class="container">
+        <h2 id="leaders-heading" class="section-title">
+          <span class="hindi">राष्ट्रीय नेता</span>
+          National Leaders
+        </h2>
+      </div>
+    </section>
+
+    <!-- SECTION 6: Parties (Phase 3) -->
+    <section id="parties" class="section" aria-labelledby="parties-heading">
+      <div class="container">
+        <h2 id="parties-heading" class="section-title">
+          <span class="hindi">राजनीतिक दल</span>
+          Political Parties
+        </h2>
+      </div>
+    </section>
+
+    <!-- SECTION 7: Parliament (Phase 4) -->
+    <section id="parliament" class="section" aria-labelledby="parliament-heading">
+      <div class="container">
+        <h2 id="parliament-heading" class="section-title">
+          <span class="hindi">संसद</span>
+          Parliament of India
+        </h2>
+      </div>
+    </section>
+
+    <!-- SECTION 8: States (Phase 4) -->
+    <section id="states" class="section" aria-labelledby="states-heading">
+      <div class="container">
+        <h2 id="states-heading" class="section-title">
+          <span class="hindi">राज्य और केंद्र शासित प्रदेश</span>
+          States &amp; Union Territories
+        </h2>
+      </div>
+    </section>
+
+    <!-- SECTION 9: 2024 Results (Phase 4) -->
+    <section id="results-2024" class="section" aria-labelledby="results-heading">
+      <div class="container">
+        <h2 id="results-heading" class="section-title">
+          <span class="hindi">2024 लोक सभा चुनाव</span>
+          18th Lok Sabha — 2024 General Election
+        </h2>
+      </div>
+    </section>
+
+    <!-- SECTION 10: Election Process (Phase 5) -->
+    <section id="election-process" class="section" aria-labelledby="process-heading">
+      <div class="container">
+        <h2 id="process-heading" class="section-title">
+          <span class="hindi">चुनाव प्रक्रिया</span>
+          How Elections Work in India
+        </h2>
+      </div>
+    </section>
+
+    <!-- SECTION 11: Upcoming Elections (Phase 5) -->
+    <section id="upcoming-elections" class="section" aria-labelledby="upcoming-heading">
+      <div class="container">
+        <h2 id="upcoming-heading" class="section-title">
+          <span class="hindi">आगामी चुनाव</span>
+          Upcoming Elections
+        </h2>
+      </div>
+    </section>
+
+    <!-- SECTION 12: Key Facts (Phase 5) -->
+    <section id="key-facts" class="section" aria-labelledby="facts-heading">
+      <div class="container">
+        <h2 id="facts-heading" class="section-title">
+          <span class="hindi">चुनावी तथ्य</span>
+          Electoral Facts &amp; Numbers
+        </h2>
+      </div>
+    </section>
+
+    <!-- SECTION 13: Quiz (Phase 5) -->
+    <section id="quiz" class="section" aria-labelledby="quiz-heading">
+      <div class="container">
+        <h2 id="quiz-heading" class="section-title">
+          <span class="hindi">चुनाव क्विज़</span>
+          Election IQ Quiz
+        </h2>
+      </div>
+    </section>
+
+    <!-- SECTION 14: AI Guide (Phase 5) -->
+    <section id="ai-guide" class="section" aria-labelledby="ai-heading">
+      <div class="container">
+        <h2 id="ai-heading" class="section-title">
+          <span class="hindi">AI चुनाव सहायक</span>
+          AI Election Guide — Powered by Gemini
+        </h2>
+      </div>
+    </section>
+
+    <!-- SECTION 15: Voter's Guide (Phase 5) -->
+    <section id="voters-guide" class="section" aria-labelledby="voters-heading">
+      <div class="container">
+        <h2 id="voters-heading" class="section-title">
+          <span class="hindi">मतदाता गाइड</span>
+          Complete Voter's Guide
+        </h2>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SECTION 16: Footer -->
+  <footer id="footer" class="footer" role="contentinfo">
+    <div class="footer-tricolor" aria-hidden="true"></div>
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <div class="footer-logo">
+          <svg viewBox="0 0 100 100" width="32" height="32" style="color:var(--navy-chakra)" aria-hidden="true"><use href="#chakra-svg"/></svg>
+          <span class="brand-voteiq" style="font-size:20px">VOTEIQ INDIA</span>
+        </div>
+        <p class="footer-tagline" lang="hi">भारत के लोकतंत्र को समझिए</p>
+        <p class="footer-powered">Powered by Google Gemini ✨</p>
+        <span class="badge badge-saffron" style="font-size:10px;margin-top:8px">PromptWars 2026</span>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col-title">Navigate</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="#india-map" class="footer-link">India Map</a></li>
+          <li><a href="#leaders" class="footer-link">Leaders</a></li>
+          <li><a href="#parties" class="footer-link">Parties</a></li>
+          <li><a href="#parliament" class="footer-link">Parliament</a></li>
+          <li><a href="#election-process" class="footer-link">Election Process</a></li>
+          <li><a href="#quiz" class="footer-link">Quiz</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col-title">Resources</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="https://eci.gov.in" class="footer-link" target="_blank" rel="noopener">Election Commission of India</a></li>
+          <li><a href="https://voters.eci.gov.in" class="footer-link" target="_blank" rel="noopener">Voter Registration</a></li>
+          <li><a href="https://electoralsearch.eci.gov.in" class="footer-link" target="_blank" rel="noopener">Electoral Search</a></li>
+          <li><a href="https://legislative.gov.in" class="footer-link" target="_blank" rel="noopener">Constitution of India</a></li>
+          <li><a href="tel:1950" class="footer-link">📞 Voter Helpline: 1950</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3 class="footer-col-title">About</h3>
+        <p class="footer-about-text">PromptWars Virtual 2026<br/>Challenge: Election Education<br/>Developer: Sumit Suthar</p>
+        <h3 class="footer-col-title" style="margin-top:var(--space-md)">Tech Stack</h3>
+        <p class="footer-about-text">Google Gemini 1.5 Flash<br/>Cloud Run · Firestore<br/>D3.js · Chart.js · Flask</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 VoteIQ India. Data: ECI, Lok Sabha &amp; Rajya Sabha Secretariat.</p>
+      <p class="footer-disclaimer">Educational platform. Not affiliated with ECI or any political party.</p>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 100 100" width="22" height="22" aria-hidden="true" style="color:currentColor"><use href="#chakra-svg"/></svg>
+  </button>
+
+  <!-- CDN Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
