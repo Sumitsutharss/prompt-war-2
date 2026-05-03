@@ -18,6 +18,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="sections.css" />
 </head>
 <body id="app" class="lang-en">
 
@@ -198,44 +199,112 @@
       </div>
     </section>
 
-    <!-- SECTION 3: India Map (Phase 3) -->
+    <!-- SECTION 3: India Map -->
     <section id="india-map" class="section" aria-labelledby="map-heading">
       <div class="container">
-        <h2 id="map-heading" class="section-title">
-          <span class="hindi">भारत का चुनावी नक्शा</span>
-          India's Electoral Map
-        </h2>
-        <p class="section-subtitle">Interactive map — coming in Phase 3</p>
+        <div class="section-header reveal">
+          <div class="section-eyebrow">Interactive Data</div>
+          <h2 id="map-heading" class="section-title"><span class="hindi">भारत का चुनावी नक्शा</span>India's Electoral Map</h2>
+        </div>
+        <div class="map-controls reveal">
+          <div class="view-mode-pills" role="group" aria-label="Map view mode">
+            <button class="pill-btn active" data-view="ls_results">LS Results 2024</button>
+            <button class="pill-btn" data-view="ruling_party">Ruling Party</button>
+            <button class="pill-btn" data-view="turnout">Voter Turnout</button>
+          </div>
+          <div class="alliance-pills" role="group" aria-label="Filter by alliance">
+            <button class="pill-btn active" data-alliance-filter="all">All</button>
+            <button class="pill-btn" data-alliance-filter="NDA">NDA</button>
+            <button class="pill-btn" data-alliance-filter="INDIA">INDIA</button>
+            <button class="pill-btn" data-alliance-filter="Others">Others</button>
+          </div>
+          <div class="map-search-wrap">
+            <input type="search" id="map-search" class="map-search" placeholder="Search state..." aria-label="Search states on map" />
+          </div>
+        </div>
+        <div class="map-layout">
+          <div>
+            <div id="india-svg-wrap"><svg id="india-svg" role="img" aria-label="Interactive map of India showing electoral data"></svg></div>
+            <div class="map-legend reveal" id="map-legend" aria-label="Map legend">
+              <div class="legend-item"><div class="legend-dot" style="background:#FF6200"></div> NDA</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#046A38"></div> INDIA Alliance</div>
+              <div class="legend-item"><div class="legend-dot" style="background:#607D8B"></div> Others/Split</div>
+            </div>
+          </div>
+          <div class="map-panel glass" id="state-panel" role="region" aria-label="State details" aria-live="polite">
+            <div class="map-panel-placeholder">
+              <div class="big-icon" aria-hidden="true">🗺️</div>
+              <p>Click any state to see full details</p>
+            </div>
+          </div>
+        </div>
       </div>
+      <div id="map-tooltip" class="map-tooltip" role="tooltip" aria-live="polite"></div>
     </section>
 
-    <!-- SECTION 4: Current Government (Phase 3) -->
+    <!-- SECTION 4: Current Government -->
     <section id="government" class="section" aria-labelledby="govt-heading">
       <div class="container">
-        <h2 id="govt-heading" class="section-title">
-          <span class="hindi">वर्तमान सरकार</span>
-          Current Government — Modi 3.0
-        </h2>
+        <div class="section-header reveal">
+          <div class="section-eyebrow">Modi 3.0 · Sworn 9 June 2024</div>
+          <h2 id="govt-heading" class="section-title"><span class="hindi">वर्तमान सरकार</span>Current Government</h2>
+        </div>
+        <div class="const-heads reveal-children">
+          <div class="const-card"><div class="const-card-icon" aria-hidden="true">🏛️</div><div class="const-card-role">President of India</div><div class="const-card-name">Droupadi Murmu</div><div class="const-card-party">BJP — 15th President</div><div class="const-card-since">Since 25 July 2022</div></div>
+          <div class="const-card"><div class="const-card-icon" aria-hidden="true">⚖️</div><div class="const-card-role">Vice President of India</div><div class="const-card-name">C. P. Radhakrishnan</div><div class="const-card-party">BJP — 15th VP</div><div class="const-card-since">Since 11 Feb 2025</div></div>
+          <div class="const-card"><div class="const-card-icon" aria-hidden="true">🇮🇳</div><div class="const-card-role">Prime Minister of India</div><div class="const-card-name">Narendra Modi</div><div class="const-card-party">BJP — Modi 3.0</div><div class="const-card-since">Since 9 June 2024</div></div>
+        </div>
+        <div class="cabinet-header">
+          <h3 style="font-family:var(--font-editorial);font-size:1.5rem">Union Cabinet</h3>
+          <span class="badge badge-glass">30 Cabinet Ministers</span>
+        </div>
+        <div class="cabinet-grid" id="cabinet-grid"></div>
+        <div class="show-all-btn"><button class="btn btn-outline-saffron" id="show-all-cabinet">Show All Ministers ↓</button></div>
       </div>
     </section>
 
-    <!-- SECTION 5: Leaders (Phase 3) -->
+    <!-- SECTION 5: Leaders -->
     <section id="leaders" class="section" aria-labelledby="leaders-heading">
       <div class="container">
-        <h2 id="leaders-heading" class="section-title">
-          <span class="hindi">राष्ट्रीय नेता</span>
-          National Leaders
-        </h2>
+        <div class="section-header reveal">
+          <div class="section-eyebrow">Hover to flip each card</div>
+          <h2 id="leaders-heading" class="section-title"><span class="hindi">राष्ट्रीय नेता</span>National Leaders</h2>
+        </div>
+        <div class="leaders-tabs" role="tablist" aria-label="Leader categories">
+          <button class="leader-tab active" role="tab" aria-selected="true" aria-controls="pane-government" data-tab="government">🏛️ Government</button>
+          <button class="leader-tab" role="tab" aria-selected="false" aria-controls="pane-opposition" data-tab="opposition">🟢 Opposition</button>
+          <button class="leader-tab" role="tab" aria-selected="false" aria-controls="pane-eci" data-tab="eci">⚖️ Election Commission</button>
+        </div>
+        <div id="pane-government" class="leader-pane active" role="tabpanel" aria-labelledby="tab-government"></div>
+        <div id="pane-opposition" class="leader-pane" role="tabpanel" aria-labelledby="tab-opposition"></div>
+        <div id="pane-eci" class="leader-pane" role="tabpanel" aria-labelledby="tab-eci"></div>
       </div>
     </section>
 
-    <!-- SECTION 6: Parties (Phase 3) -->
+    <!-- SECTION 6: Parties -->
     <section id="parties" class="section" aria-labelledby="parties-heading">
       <div class="container">
-        <h2 id="parties-heading" class="section-title">
-          <span class="hindi">राजनीतिक दल</span>
-          Political Parties
-        </h2>
+        <div class="section-header reveal">
+          <div class="section-eyebrow">25 Parties · Click for full data</div>
+          <h2 id="parties-heading" class="section-title"><span class="hindi">राजनीतिक दल</span>Political Parties Encyclopedia</h2>
+        </div>
+        <div class="parties-controls reveal" role="group" aria-label="Filter parties by alliance">
+          <button class="pill-btn active" data-party-filter="all">All Parties</button>
+          <button class="pill-btn" data-party-filter="NDA">NDA Alliance</button>
+          <button class="pill-btn" data-party-filter="INDIA">INDIA Alliance</button>
+          <button class="pill-btn" data-party-filter="LDF">Left Front</button>
+          <button class="pill-btn" data-party-filter="Others">Others</button>
+        </div>
+        <div class="parties-grid" id="parties-grid"></div>
+      </div>
+      <!-- Party detail modal -->
+      <div id="party-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Party details" aria-hidden="true">
+        <div class="modal-box">
+          <button class="modal-close" onclick="closePartyModal()" aria-label="Close modal">✕</button>
+          <div class="modal-title"></div>
+          <div class="modal-subtitle"></div>
+          <div class="modal-grid"></div>
+        </div>
       </div>
     </section>
 
@@ -384,9 +453,10 @@
   </button>
 
   <!-- CDN Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
   <script src="script.js" defer></script>
+  <script src="sections.js" defer></script>
 </body>
 </html>
