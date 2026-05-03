@@ -90,6 +90,23 @@
   to   { opacity: 1; }
 }
 
+/* ─── Skip Link (Accessibility) ─────────────────── */
+.skip-link {
+  position: absolute; top: -100%; left: 50%; transform: translateX(-50%);
+  background: var(--saffron-mid); color: var(--bg-primary);
+  padding: 10px 24px; border-radius: 0 0 var(--radius-md) var(--radius-md);
+  font-family: var(--font-ui); font-weight: 700; font-size: 14px;
+  z-index: 99999; text-decoration: none; transition: top 0.2s;
+  white-space: nowrap;
+}
+.skip-link:focus { top: 0; }
+
+/* ─── Reduced Motion ─────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  .ticker-track, #loading-chakra, .hero-chakra-watermark { animation: none !important; }
+}
+
 /* ─── Reset ──────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }

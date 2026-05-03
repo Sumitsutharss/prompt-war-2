@@ -168,8 +168,14 @@ def serve_frontend():
 
 
 @app.route('/health')
+@app.route('/api/health')
 def health():
-    return jsonify({'status': 'ok', 'timestamp': datetime.utcnow().isoformat()})
+    return jsonify({
+        'status': 'ok',
+        'service': 'voteiq-india',
+        'version': '2.0.0',
+        'timestamp': datetime.utcnow().isoformat(),
+    })
 
 
 @app.route('/api/chat', methods=['POST'])
@@ -305,9 +311,13 @@ def search():
         if q in p.get('name', '').lower() or q in p.get('leader', '').lower():
             results.append({'type': 'party', 'name': p['name'], 'seats': p.get('ls_seats', 0)})
 
+    for l in data.get('leaders', []):
+        if q in l.get('name', '').lower() or q in l.get('role', '').lower():
+            results.append({'type': 'leader', 'name': l['name'], 'role': l.get('role', '')})
+
     for c in data.get('constituencies', []):
-        if q in c.get('name', '').lower() or q in c.get('winner', '').lower():
-            results.append({'type': 'constituency', 'name': c['name'], 'winner': c.get('winner', '')})
+        if q in c.get('name', '').lower():
+            results.append({'type': 'constituency', 'name': c['name'], 'state': c.get('state', '')})
 
     return jsonify({'results': results[:20]})
 
