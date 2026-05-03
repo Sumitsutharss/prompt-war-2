@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="sections.css" />
   <link rel="stylesheet" href="phase4.css" />
+  <link rel="stylesheet" href="phase5.css" />
 </head>
 <body id="app" class="lang-en">
 
@@ -433,63 +434,238 @@
       </div>
     </section>
 
-    <!-- SECTION 10: Election Process (Phase 5) -->
+    <!-- SECTION 10: Election Process -->
     <section id="election-process" class="section" aria-labelledby="process-heading">
       <div class="container">
-        <h2 id="process-heading" class="section-title">
-          <span class="hindi">चुनाव प्रक्रिया</span>
-          How Elections Work in India
-        </h2>
+        <div class="section-header reveal">
+          <div class="section-eyebrow">10 Steps · Click each node for full details</div>
+          <h2 id="process-heading" class="section-title"><span class="hindi">चुनाव प्रक्रिया</span>How Elections Work in India</h2>
+        </div>
+        <div class="process-layout">
+          <div class="process-timeline" id="process-timeline" aria-label="Election process steps"></div>
+          <div class="process-detail-panel" id="process-detail">
+            <div class="process-detail-placeholder"><div class="process-detail-icon">⚖️</div><p>Click any step to see full details</p></div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- SECTION 11: Upcoming Elections (Phase 5) -->
+    <!-- SECTION 11: Upcoming Elections -->
     <section id="upcoming-elections" class="section" aria-labelledby="upcoming-heading">
       <div class="container">
-        <h2 id="upcoming-heading" class="section-title">
-          <span class="hindi">आगामी चुनाव</span>
-          Upcoming Elections
-        </h2>
+        <div class="section-header reveal">
+          <div class="section-eyebrow">Live Countdown Timers</div>
+          <h2 id="upcoming-heading" class="section-title"><span class="hindi">आगामी चुनाव</span>Upcoming State Elections</h2>
+        </div>
+        <div class="upcoming-grid" id="upcoming-grid"></div>
       </div>
     </section>
 
-    <!-- SECTION 12: Key Facts (Phase 5) -->
+    <!-- SECTION 12: Key Facts -->
     <section id="key-facts" class="section" aria-labelledby="facts-heading">
       <div class="container">
-        <h2 id="facts-heading" class="section-title">
-          <span class="hindi">चुनावी तथ्य</span>
-          Electoral Facts &amp; Numbers
-        </h2>
+        <div class="section-header reveal">
+          <div class="section-eyebrow">16 Essential Numbers</div>
+          <h2 id="facts-heading" class="section-title"><span class="hindi">चुनावी तथ्य</span>Electoral Facts &amp; Numbers</h2>
+        </div>
+        <div class="facts-grid" id="facts-grid"></div>
       </div>
     </section>
 
-    <!-- SECTION 13: Quiz (Phase 5) -->
+    <!-- SECTION 13: Quiz -->
     <section id="quiz" class="section" aria-labelledby="quiz-heading">
       <div class="container">
-        <h2 id="quiz-heading" class="section-title">
-          <span class="hindi">चुनाव क्विज़</span>
-          Election IQ Quiz
-        </h2>
+        <div class="section-header reveal">
+          <div class="section-eyebrow">15 Questions · 25 sec each · 4 Categories</div>
+          <h2 id="quiz-heading" class="section-title"><span class="hindi">चुनाव क्विज़</span>Election IQ Quiz</h2>
+        </div>
+        <div class="quiz-shell">
+          <!-- Start -->
+          <div id="quiz-start" class="quiz-start">
+            <div class="quiz-start-icon">🧠</div>
+            <div class="quiz-start-title">Test Your Election IQ</div>
+            <div class="quiz-start-sub">15 questions · 25 seconds each · Instant explanations</div>
+            <div class="quiz-category-grid">
+              <div class="quiz-cat-btn selected" data-cat="basics">
+                <div class="quiz-cat-icon">📚</div><div class="quiz-cat-name">Basics</div>
+              </div>
+              <div class="quiz-cat-btn" data-cat="process">
+                <div class="quiz-cat-icon">📄</div><div class="quiz-cat-name">Process</div>
+              </div>
+              <div class="quiz-cat-btn" data-cat="history">
+                <div class="quiz-cat-icon">🏷️</div><div class="quiz-cat-name">History</div>
+              </div>
+              <div class="quiz-cat-btn" data-cat="constitution">
+                <div class="quiz-cat-icon">⚖️</div><div class="quiz-cat-name">Constitution</div>
+              </div>
+              <div class="quiz-cat-btn" data-cat="mixed" style="grid-column:span 2">
+                <div class="quiz-cat-icon">🎯</div><div class="quiz-cat-name">Mixed (All Categories)</div>
+              </div>
+            </div>
+            <button id="quiz-start-btn" class="btn btn-saffron" style="width:100%;justify-content:center;padding:16px">Start Quiz →</button>
+          </div>
+          <!-- Active -->
+          <div id="quiz-active" class="quiz-active">
+            <div class="quiz-progress-bar" role="progressbar" aria-label="Quiz progress">
+              <div class="quiz-progress-fill" id="quiz-progress-fill" style="width:0%"></div>
+            </div>
+            <div class="quiz-meta">
+              <span class="quiz-q-num" id="quiz-q-num">Q1/15</span>
+              <span class="quiz-timer" id="quiz-timer">⏱ 25s</span>
+            </div>
+            <div class="quiz-question" id="quiz-question-text"></div>
+            <div class="quiz-options" id="quiz-options"></div>
+            <div class="quiz-explanation" id="quiz-explanation"></div>
+            <div class="quiz-nav">
+              <span class="quiz-score-inline" id="quiz-score-inline">Score: 0</span>
+              <button id="quiz-next-btn" class="btn btn-saffron" disabled>Next →</button>
+            </div>
+          </div>
+          <!-- Results -->
+          <div id="quiz-results" class="quiz-results">
+            <div style="font-size:48px">🏆</div>
+            <div class="quiz-result-score" id="quiz-result-score">0/5</div>
+            <div class="quiz-result-msg" id="quiz-result-msg">Well done!</div>
+            <div class="quiz-result-sub" id="quiz-result-sub"></div>
+            <div style="display:flex;gap:var(--space-md);justify-content:center;margin-top:var(--space-xl)">
+              <button id="quiz-restart-btn" class="btn btn-outline-saffron">Try Again</button>
+              <a href="#ai-guide" class="btn btn-saffron">Ask AI for Help ✨</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- SECTION 14: AI Guide (Phase 5) -->
+    <!-- SECTION 14: AI Guide -->
     <section id="ai-guide" class="section" aria-labelledby="ai-heading">
       <div class="container">
-        <h2 id="ai-heading" class="section-title">
-          <span class="hindi">AI चुनाव सहायक</span>
-          AI Election Guide — Powered by Gemini
-        </h2>
+        <div class="section-header reveal">
+          <div class="section-eyebrow">Powered by Google Gemini 1.5 Flash</div>
+          <h2 id="ai-heading" class="section-title"><span class="hindi">AI चुनाव सहायक</span>AI Election Guide</h2>
+        </div>
+        <div class="ai-layout">
+          <div class="chat-wrap" role="region" aria-label="AI Chat">
+            <div class="chat-header">
+              <div class="chat-header-avatar" aria-hidden="true">✨</div>
+              <div>
+                <div class="chat-header-name">VoteIQ AI</div>
+                <div class="chat-header-status">● Online · Always neutral &amp; factual</div>
+              </div>
+              <div class="chat-powered">Gemini 1.5 Flash</div>
+            </div>
+            <div class="chat-messages" id="chat-messages" aria-live="polite" aria-label="Chat messages">
+              <div class="typing-indicator" id="typing-indicator" aria-hidden="true">
+                <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
+              </div>
+            </div>
+            <div class="chat-input-area">
+              <textarea id="chat-input" placeholder="Ask about Indian elections, parties, voting..." aria-label="Chat message input" rows="1" maxlength="1000"></textarea>
+              <button id="chat-send" aria-label="Send message">Send ➤</button>
+            </div>
+          </div>
+          <div class="ai-sidebar">
+            <div class="ai-sidebar-card">
+              <div class="ai-sidebar-title">Suggested Questions</div>
+              <div class="suggested-questions">
+                <button class="suggested-q">How do I register to vote?</button>
+                <button class="suggested-q">What is the Model Code of Conduct?</button>
+                <button class="suggested-q">How does the EVM work?</button>
+                <button class="suggested-q">What is the anti-defection law?</button>
+                <button class="suggested-q" lang="hi">नरेन्द्र मोदी कौन हैं?</button>
+                <button class="suggested-q">What is NOTA?</button>
+                <button class="suggested-q">How are Rajya Sabha members elected?</button>
+                <button class="suggested-q">What is the election schedule for Bihar 2025?</button>
+              </div>
+            </div>
+            <div class="ai-sidebar-card">
+              <div class="ai-sidebar-title">AI Stats</div>
+              <div class="ai-stats">
+                <div class="ai-stat-row"><span>Model</span><span class="ai-stat-val">Gemini 1.5 Flash</span></div>
+                <div class="ai-stat-row"><span>Language</span><span class="ai-stat-val">EN / HI</span></div>
+                <div class="ai-stat-row"><span>Messages sent</span><span class="ai-stat-val" id="chat-msg-count">0</span></div>
+                <div class="ai-stat-row"><span>Data source</span><span class="ai-stat-val">ECI + Constitution</span></div>
+              </div>
+            </div>
+            <div class="ai-sidebar-card" style="background:var(--gradient-saffron);border:none">
+              <div style="font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:0.1em;color:rgba(4,5,10,0.7);margin-bottom:8px">VOTER HELPLINE</div>
+              <div style="font-family:var(--font-data);font-size:2.5rem;font-weight:700;color:var(--bg-primary);line-height:1">1950</div>
+              <div style="font-size:12px;color:rgba(4,5,10,0.6);margin-top:4px">Toll-free · 24x7 during elections</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- SECTION 15: Voter's Guide (Phase 5) -->
+    <!-- SECTION 15: Voter's Guide -->
     <section id="voters-guide" class="section" aria-labelledby="voters-heading">
       <div class="container">
-        <h2 id="voters-heading" class="section-title">
-          <span class="hindi">मतदाता गाइड</span>
-          Complete Voter's Guide
-        </h2>
+        <div class="section-header reveal">
+          <div class="section-eyebrow">Your Complete Voting Handbook</div>
+          <h2 id="voters-heading" class="section-title"><span class="hindi">मतदाता गाइड</span>Complete Voter's Guide</h2>
+        </div>
+        <div class="voters-layout">
+          <div class="voter-steps">
+            <div class="voter-step reveal">
+              <div class="voter-step-num">1</div>
+              <div class="voter-step-content">
+                <div class="voter-step-title">Check Voter Eligibility</div>
+                <div class="voter-step-desc">You must be an Indian citizen, 18 years or older on January 1 of the revision year, and a resident of the constituency.</div>
+              </div>
+            </div>
+            <div class="voter-step reveal">
+              <div class="voter-step-num">2</div>
+              <div class="voter-step-content">
+                <div class="voter-step-title">Register on NVSP / Voter Portal</div>
+                <div class="voter-step-desc">Apply through nvsp.in or voterportal.eci.gov.in using Form 6. You can also register via the Voter Helpline App.</div>
+                <a href="https://voters.eci.gov.in" class="voter-step-link" target="_blank" rel="noopener">→ voters.eci.gov.in</a>
+              </div>
+            </div>
+            <div class="voter-step reveal">
+              <div class="voter-step-num">3</div>
+              <div class="voter-step-content">
+                <div class="voter-step-title">Get Your EPIC Card</div>
+                <div class="voter-step-desc">Elector's Photo Identity Card (EPIC) is issued by ECI. Download the e-EPIC from the voter portal.</div>
+              </div>
+            </div>
+            <div class="voter-step reveal">
+              <div class="voter-step-num">4</div>
+              <div class="voter-step-content">
+                <div class="voter-step-title">Find Your Polling Booth</div>
+                <div class="voter-step-desc">Search on electoralsearch.eci.gov.in or SMS &ldquo;EPIC &lt;voter ID&gt;&rdquo; to 1950 to find your polling station.</div>
+                <a href="https://electoralsearch.eci.gov.in" class="voter-step-link" target="_blank" rel="noopener">→ electoralsearch.eci.gov.in</a>
+              </div>
+            </div>
+            <div class="voter-step reveal">
+              <div class="voter-step-num">5</div>
+              <div class="voter-step-content">
+                <div class="voter-step-title">Vote on Election Day</div>
+                <div class="voter-step-desc">Carry an approved ID. Polls open 7 AM – 6 PM. Press the button next to your candidate on the EVM. Ink mark on left index finger confirms your vote.</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="voter-ids">
+              <div class="voter-ids-title">📋 12 Approved Photo IDs for Voting</div>
+              <div class="voter-id-item"><div class="voter-id-num">1</div>Aadhaar Card</div>
+              <div class="voter-id-item"><div class="voter-id-num">2</div>EPIC / Voter ID Card</div>
+              <div class="voter-id-item"><div class="voter-id-num">3</div>MNREGA Job Card</div>
+              <div class="voter-id-item"><div class="voter-id-num">4</div>Bank / Post Office Passbook with Photo</div>
+              <div class="voter-id-item"><div class="voter-id-num">5</div>Health Insurance Smart Card (MHRS)</div>
+              <div class="voter-id-item"><div class="voter-id-num">6</div>Driving Licence</div>
+              <div class="voter-id-item"><div class="voter-id-num">7</div>PAN Card</div>
+              <div class="voter-id-item"><div class="voter-id-num">8</div>Indian Passport</div>
+              <div class="voter-id-item"><div class="voter-id-num">9</div>Smart Card (RGI under NPR)</div>
+              <div class="voter-id-item"><div class="voter-id-num">10</div>Pension Document with Photo</div>
+              <div class="voter-id-item"><div class="voter-id-num">11</div>Govt Employee Service Identity Card</div>
+              <div class="voter-id-item"><div class="voter-id-num">12</div>MP / MLA / MLC Official Identity Card</div>
+            </div>
+            <div class="voter-helpline">
+              <div class="voter-helpline-label">NATIONAL VOTER HELPLINE</div>
+              <div class="voter-helpline-num">📞 1950</div>
+              <div class="voter-helpline-label">Available during election period · Toll-free</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -554,5 +730,6 @@
   <script src="script.js" defer></script>
   <script src="sections.js" defer></script>
   <script src="phase4.js" defer></script>
+  <script src="phase5.js" defer></script>
 </body>
 </html>
