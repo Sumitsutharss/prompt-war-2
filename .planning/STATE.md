@@ -5,7 +5,7 @@
 See: `.planning/PROJECT.md` (updated 2026-05-03)
 
 **Core value:** A citizen who opens VoteIQ India must be able to understand India's election process, explore live political data, and get reliable AI-guided answers — all in one place, in Hindi or English.
-**Current focus:** Phase 1 — Foundation & Visual Shell
+**Current focus:** Phase 1 — Foundation & Visual Shell (Planning complete — 3 plans ready)
 
 ## Current Status
 
